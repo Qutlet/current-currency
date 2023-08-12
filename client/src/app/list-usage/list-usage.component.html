@@ -1,0 +1,25 @@
+<div>
+
+    <table>
+        <tr>
+            <th>Status</th>
+            <th>Date</th>
+            <th>User name</th>
+            <th>Currency</th>
+            <th>Value</th>
+          </tr>
+          <tr *ngFor="let data of response" [ngClass]="{'failed-row': data.success === false}">
+            <td>{{ data.success ? 'Success' : 'Failed'}}</td>
+            <td>{{ data.date | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+            <td>{{ data.name }}</td>
+            <td>{{ data.currency }}</td>
+            <td>{{ data.value ? data.value : 'NOT AVAILABLE'}}</td>
+          </tr>
+    </table>
+
+    <div class="inputDiv">
+        <button (click)="refreshData()">Refresh</button>
+    </div>
+
+
+</div>

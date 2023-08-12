@@ -1,0 +1,40 @@
+<div class="main-flex">
+    <h1>Check Currency Value</h1>
+
+    <form [formGroup]="currencyForm" (ngSubmit)="onSubmit()">
+        <div class="inputDiv">
+            <label for="name">Your name and surname:</label>
+            <input id="name" type="text" formControlName="name">
+            <div *ngIf="currencyForm.get('name')?.hasError('required') && currencyForm.get('name')?.touched" class="error-message">
+                Name is required.
+            </div>
+        </div>
+
+        <div class="inputDiv">
+            <label for="currency">Currency:</label>
+            <input id="currency" type="text" formControlName="currency">
+            <div *ngIf="(currencyForm.get('currency')?.hasError('required') ||currencyForm.get('currency')?.hasError('minlength') || currencyForm.get('currency')?.hasError('maxlength') ) && currencyForm.get('currency')?.touched" class="error-message">
+                Currency code is required and need to be 3 characters long.
+            </div>
+        </div>
+
+        <div class="inputDiv">
+            <button class="button" type="submit">Check</button>
+        </div>
+       
+      </form>
+
+      <div *ngIf="visability">
+        <div class="inputDiv">
+            <p>Currency: {{ response.currency }}</p>
+            <p>Value: {{ response.value }}</p>
+        </div>
+
+        <div class="inputDiv">
+            <button class="button" (click)="clear()">Clear</button>
+        </div>
+        
+      </div>
+      
+  </div>
+  
